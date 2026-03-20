@@ -18,4 +18,3 @@ H[phaseplot];
 freq := H[frequencies];
 response := H[response];
 plot(freq, abs(response), title = "Absolute response magnitude", color = blue, gridlines = true, labels = ["Normalized Frequency (&times; &pi; rad/sample)", typeset("|H(", omega, ")|")], labeldirections = [horizontal, vertical]);
-NULL;

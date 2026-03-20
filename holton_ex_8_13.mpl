@@ -17,8 +17,6 @@ e__p := evalf(sqrt(10^(-d__p/10) - 1));
 x := arccosh(e__s/e__p);
 N := ceil(x/arccosh(WsT/WpT));
 WcT := WsT;
-NULL;
-NULL;
 k := Vector(N, i -> i - 1);
 psi := `+`~(2.00000*k, 1)*Pi/(2*N);
 phi := arcsinh(e__s)/N;

@@ -1,8 +1,6 @@
 
 with(LinearAlgebra);
 assume(n, integer);
-NULL;
-NULL;
 D2 := omega -> piecewise(abs(omega) < omega__p, 1, 0);
 W := omega -> piecewise(abs(omega) < omega__p, 1, omega__p <= abs(omega) and abs(omega) < omega__s, 0, K);
 d := n -> 1/2*Int(D2(omega)*W(omega)*exp^(omega*n*I), omega = -Pi .. Pi)/Pi;
