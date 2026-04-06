@@ -1,6 +1,5 @@
                             "maple in ~/.mapleinit"
 
-Warning, on line 1, incomplete string; use " to end the string
 # Holton DSP, p.469 Example 7.15 : Discrete weighted least-square-error lowpass filter
 # The error of points in the stopband is weighted by a factor of K = 10.
 restart: 

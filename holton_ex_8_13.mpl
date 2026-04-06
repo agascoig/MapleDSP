@@ -1,6 +1,5 @@
                             "maple in ~/.mapleinit"
 
-Warning, on line 1, incomplete string; use " to end the string
 # Holton p. 560 Example 8.13 Type-II discrete-time inverse Chebyshev lowpass filter
 # Design a discrete-time inverse (Type-II) Chebyshev lowpass filter using the bilinear-transformation method using the same parameters as the previous example: \317\211
 # p

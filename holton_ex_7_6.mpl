@@ -1,6 +1,5 @@
                             "maple in ~/.mapleinit"
 
-Warning, on line 1, incomplete string; use " to end the string
 # Holton Example 7.6: Causal highpass filter
 # Design a
 # causal

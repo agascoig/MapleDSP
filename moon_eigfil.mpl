@@ -1,6 +1,5 @@
                             "maple in ~/.mapleinit"
 
-Warning, on line 1, incomplete string; use " to end the string
 # Moon, "Mathematical Methods and Algorithms for Signal Processing" Eigenfilter Method
 restart: 
 omega__p := `*`(.4,Pi): # passband frequency;

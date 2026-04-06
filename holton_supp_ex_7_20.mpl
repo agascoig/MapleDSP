@@ -1,6 +1,5 @@
                             "maple in ~/.mapleinit"
 
-Warning, on line 1, incomplete string; use " to end the string
 # Holton Example 7.20: Integral Least-Square Error Lowpass Filter
 # Design an integral least-square-error lowpass filter of length N = 17 with a passband of \317\211
 # p

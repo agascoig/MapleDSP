@@ -1,6 +1,5 @@
                             "maple in ~/.mapleinit"
 
-Warning, on line 1, incomplete string; use " to end the string
 # Holton DSP, p.456 Example 7.11 : Inverse DFT frequency-sampled filter
 # Type-3 FIR bandpass filter
 restart: 

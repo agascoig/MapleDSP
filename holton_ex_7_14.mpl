@@ -1,6 +1,5 @@
                             "maple in ~/.mapleinit"
 
-Warning, on line 1, incomplete string; use " to end the string
 # Holton DSP, p.467 Example 7.14 : Least-square-error lowpass filter
 restart: 
 N := 17: 

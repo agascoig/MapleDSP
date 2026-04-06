@@ -1,6 +1,5 @@
                             "maple in ~/.mapleinit"
 
-Warning, on line 1, incomplete string; use " to end the string
 with(LinearAlgebra): 
 assume(n,integer): 
 #&coloneq;0.45&#960;:
