@@ -1,12 +1,17 @@
+                            "maple in ~/.mapleinit"
 
-with(LinearAlgebra);
-assume(n, integer);
-D2 := omega -> piecewise(abs(omega) < omega__p, 1, 0);
-W := omega -> piecewise(abs(omega) < omega__p, 1, omega__p <= abs(omega) and abs(omega) < omega__s, 0, K);
-d := n -> 1/2*Int(D2(omega)*W(omega)*exp^(omega*n*I), omega = -Pi .. Pi)/Pi;
-d := 1/(2*Pi)*int(exp(omega*n*I), omega = -omega__p .. omega__p);
-d2 := convert(d, trig);
-d3 := subs(sin(omega__p*n)/(Pi*n) = omega__p*sinc(omega__p*n)/Pi, d2);
-w := 1/(2*Pi)*int(W(omega)*exp(omega*n*I), omega = -Pi .. Pi);
-w := omega__p*sinc(omega__p*n)/Pi + K*(delta(n) - omega__s*sinc(omega__s*n)/Pi);
-sinc := x -> piecewise(x = 0, 1, sin(x)/x);
+Warning, on line 1, incomplete string; use " to end the string
+with(LinearAlgebra): 
+assume(n,integer): 
+#&coloneq;0.45&#960;:
+#&coloneq;0.55&#960;:
+D2 := ptmp;
+W := ptmp;
+d := ptmp;
+d := "1/(2 Pi) (&int;)[-omega[p]]^(omega[p])(e)^(omega n &ImaginaryI;) "" &DifferentialD;omega";
+d2 := convert(d,trig);
+d3 := subs(sin(omega__p*n)/Pi/n = omega__p/Pi*sinc(omega__p*n),d2);
+w := `/`(1,2*Pi)*int(W(omega)*exp(I*omega*n),omega = -Pi .. Pi): 
+w := omega__p/Pi*sinc(omega__p*n)+K*(delta(n)-omega__s/Pi*sinc(omega__s*n));
+sinc := ptmp;
+
