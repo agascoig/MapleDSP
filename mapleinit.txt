@@ -1,0 +1,25 @@
+print("maple in ~/.mapleinit");
+plots:-setoptions(thickness = 2):
+plots:-setoptions(size = [350, 275]):
+plots:-setoptions3d(size = [350, 275]):
+interface(displayprecision = 5):
+
+with(SignalProcessing):
+with(ArrayTools):
+with(plots):
+with(FileTools):
+with(LinearAlgebra):
+
+stemplot := proc(L)
+	local i;
+	plots:-display([plots:-listplot(L, style = point, symbol = circle), plot([seq([[i, L[i]], [i, 0]], i = 1 .. NumElems(L))], colour = black, thickness=2)]);
+end proc:
+
+#text := Text:-ReadFile("/Users/alexandergascoigne/.mapleinit"):
+#print[1](text):
+#unassign('text'):
+#inteface(prettyprint = 3):
+
+sinc := proc(x, n := Pi) return `if`(is(x = 0), 1, sin(n*x)/(n*x)); end proc;
+
+
