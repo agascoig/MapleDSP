@@ -3,13 +3,12 @@
 # Parks McClellan Remez Exchange Method
 # Use the Parks-McClellan algorithm to design a linear-phase, symmetric (Type-1) lowpass filter of odd length N.  From Holton DSP Supplementary.
 Entered April 4th, 2026.
-restart; 
+restart: 
 omega__p := `*`(.25,Pi): 
 omega__s := `*`(.5,Pi): 
 delta__ps := 2: 
 N := 13: 
 # The response of the filter is given by the equation A = omega -> sum(a[m] cos(m omega),m=0..M).;
-initial_omegas := Vector([0, omega__p, `/`(omega__p,2), omega__s, 1.25*omega__s, 1.5*omega__s, 1.75*omega__s, `*`(1.0,Pi)]): 
 pm_iter := proc(N, omega__p,omega__s,delta__ps,omegas)
 	local cosomegas, M, W, DD, c, delta, AB, L, AL, EST_A,
 	S, error_freqs, error_A, freqs, k, i, A, omega, w, pi;
@@ -28,7 +27,7 @@ DD := proc(omega)
 	return `if`(is(0 <= omega and omega <= omega__p), 1.0, 0.0);
 end proc;
 
-c := proc(k)
+c := proc(k) option remember;
 	local i; 
 	return mul(seq(`if`(is(i <> k), 1/(cosomegas[k + 1] - cosomegas[i + 1]),
 	NULL), i = 0 .. M + 1));
@@ -74,7 +73,40 @@ for w in freqs do
 	end do:	
 return delta,EST_A,error_freqs,error_A,freqs,A;
 end proc:
-(delta, EST_A, error_freqs, error_A, f, A) := pm_iter(N,omega__p,omega__s,delta__ps,initial_omegas): 
+FilterNear := proc(A, B, tol)
+	local i, res;
+	res := [];
+	for i to NumElems(A) do
+		if not ormap(b -> is(abs(A[i] - b) <= tol), B) then
+			res := [op(res), A[i]];
+		end if;
+	end do;
+	return Vector(res); 
+end proc:
+parks := proc(N, omega__p, omega__s, delta__ps)
+  local fixed_omegas, initial_omegas, omegas, omega_count,
+  delta, EST_A, error_freqs, error_A, f, A, i, p, abs_last;
+  
+  fixed_omegas := [0, omega__p, omega__s, 1.00000*Pi];
+  initial_omegas := [omega__p/2, 1.25000*omega__s, 1.50000*omega__s, 1.75000*omega__s];
+  omegas := sort(Vector([fixed_omegas, initial_omegas]));
+  omega_count := NumElems(omegas);
+  delta := 0.0;
+  do
+    abs_last := abs(delta);
+    delta, EST_A, error_freqs, error_A, f, A := pm_iter(N, omega__p, omega__s, delta__ps, omegas);
+    print('Iteration ',i, delta);
+    p := FindPeakPoints(error_A,includeendpoints=false);
+    omegas := error_freqs[convert(convert(p[.., 1], integer), list)];
+    omegas := FilterNear(omegas, fixed_omegas, 0.02);
+    omegas := sort(Vector([omegas, fixed_omegas]));
+    if not is(omega_count = NumElems(omegas)) then
+    	   error("internal error: frequency list size changed.");
+    end if;
+  until is((abs(delta)-abs_last)<1e-6);
+  
+  return omegas, f, A;
+end proc:
+(omegas, f, A) := parks(N,omega__p,omega__s,delta__ps): 
 plot(f,20*log10~(abs(A)));
-EST_A;
 
