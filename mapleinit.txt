@@ -20,6 +20,6 @@ end proc:
 #unassign('text'):
 #inteface(prettyprint = 3):
 
-sinc := proc(x, n := Pi) return `if`(is(x = 0), 1, sin(n*x)/(n*x)); end proc;
+sinc := proc(x, n := Pi) return `if`(is(x = 0), 1, sin(n*x)/(n*x)); end proc:
 
 
